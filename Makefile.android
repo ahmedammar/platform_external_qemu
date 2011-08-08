@@ -732,7 +732,11 @@ LOCAL_MODULE                    := emulator
 LOCAL_STATIC_LIBRARIES          := emulator-memcheck emulator-hw emulator-arm emulator-tcg
 LOCAL_STATIC_LIBRARIES          += emulator-elff
 LOCAL_STATIC_LIBRARIES          += emulator-core emulator-ui
-LOCAL_LDLIBS                    := $(MY_LDLIBS) /usr/lib/dylib1.10.5.o
+LOCAL_LDLIBS                    := $(MY_LDLIBS) 
+
+ifeq ($(HOST_OS),darwin)
+	LOCAL_LDLIBS			+= /usr/lib/dylib1.10.5.o
+endif
 
 LOCAL_CFLAGS := $(MY_CFLAGS) $(LOCAL_CFLAGS) $(EMULATOR_CORE_CFLAGS) $(EMULATOR_UI_CFLAGS)
 
