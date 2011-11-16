@@ -72,17 +72,17 @@ ifeq ($(HOST_OS),darwin)
     # or the generated binary will not run on Tiger.
     DARWIN_VERSION := $(strip $(shell sw_vers -productVersion))
     ifneq ($(filter 10.1 10.2 10.3 10.1.% 10.2.% 10.3.% 10.4 10.4.%,$(DARWIN_VERSION)),)
-        $(error Building the Android emulator requires OS X 10.5 or above)
+        $(error Building the Android emulator requires OS X 10.6 or above)
     endif
-    ifeq ($(filter 10.5 10.5.%,$(DARWIN_VERSION)),)
+    ifeq ($(filter 10.6 10.6.%,$(DARWIN_VERSION)),)
         # We are on Snow Leopard or above
-        LEOPARD_SDK := /Developer/SDKs/MacOSX10.5.sdk
+        LEOPARD_SDK := /Developer/SDKs/MacOSX10.6.sdk
         ifeq ($(strip $(wildcard $(LEOPARD_SDK))),)
-            $(info  Please install the 10.5 SDK on this machine at $(LEOPARD_SDK))
+            $(info  Please install the 10.6 SDK on this machine at $(LEOPARD_SDK))
             $(error Aborting the build.)
         endif
-        MY_CFLAGS += -isysroot $(LEOPARD_SDK) -mmacosx-version-min=10.5 -DMACOSX_DEPLOYMENT_TARGET=10.5
-        MY_LDLIBS += -isysroot $(LEOPARD_SDK) -Wl,-syslibroot,$(LEOPARD_SDK) -mmacosx-version-min=10.5
+        MY_CFLAGS += -isysroot $(LEOPARD_SDK) -mmacosx-version-min=10.6 -DMACOSX_DEPLOYMENT_TARGET=10.6
+        MY_LDLIBS += -isysroot $(LEOPARD_SDK) -Wl,-syslibroot,$(LEOPARD_SDK) -mmacosx-version-min=10.6
     endif
 endif
 
