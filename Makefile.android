@@ -190,7 +190,7 @@ else
 endif
 
 ifeq ($(HOST_OS),darwin)
-  QEMU_SYSTEM_LDLIBS += -Wl,-framework,Cocoa
+  QEMU_SYSTEM_LDLIBS += -Wl,-framework,Cocoa /usr/lib/dylib1.10.5.o
 endif
 
 include $(LOCAL_PATH)/Makefile.common
